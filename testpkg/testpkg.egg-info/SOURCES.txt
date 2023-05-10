@@ -1,0 +1,10 @@
+setup.py
+importtest/__init__.py
+importtest/a.py
+importtest/c.py
+testpkg.egg-info/PKG-INFO
+testpkg.egg-info/SOURCES.txt
+testpkg.egg-info/dependency_links.txt
+testpkg.egg-info/top_level.txt
+toimport/__init__.py
+toimport/b.py
