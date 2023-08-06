@@ -9,6 +9,8 @@ vector<string> find_lcs(const string &file_1, const string &file_2)
 
     int f1_size = file_1.size();
     int f2_size = file_2.size();
+    int llcs = 0;
+    string slcs = "";
     cout << endl
          << f1_size << '\t' << f2_size << endl;
 
@@ -21,11 +23,12 @@ vector<string> find_lcs(const string &file_1, const string &file_2)
             if (file_1[i - 1] == file_2[j - 1])
             {
                 lcs_matrix[i][j] = lcs_matrix[i - 1][j - 1] + 1;
+                llcs = max(lcs_matrix[i][j], llcs);
             }
-            else
-            {
-                lcs_matrix[i][j] = max(lcs_matrix[i - 1][j], lcs_matrix[i][j - 1]);
-            }
+            // else
+            // {
+            //     lcs_matrix[i][j] = max(lcs_matrix[i - 1][j], lcs_matrix[i][j - 1]);
+            // }
         }
     }
 
@@ -82,6 +85,27 @@ vector<string> find_lcs(const string &file_1, const string &file_2)
     }
     //  std::reverse(differences.begin(), differences.end());/
 
+
+    cout << llcs;
+    for (int i = f1_size; i > 0; i--)
+    {
+        for (int j = f2_size; j > 0; j--)
+        {
+            cout << lcs_matrix[i][j];
+            if(lcs_matrix[i][j] == llcs)
+            {
+                while(llcs > 0)
+                {
+                    slcs += file_1[i - 1];
+                    --i;
+                    --j;
+                    --llcs;
+                }
+            }
+
+        }
+    }
+    cout << endl<< slcs << endl;
     return differences;
 }
 
